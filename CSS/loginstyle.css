@@ -1,7 +1,10 @@
+
 body{
     margin: 0;
     padding: 0;
-    background: url(loggin_bg.png) no-repeat center center fixed;
+    background: url(img/loggin_bg.png) no-repeat center fixed;
+    /*     background: url(img/loggin_bg.png) no-repeat center center fixed;
+*/
     background-size: contain;
     font-family: sans-serif;
 }
@@ -9,11 +12,14 @@ body{
 .loginbox{
     width: 270px;
     height: 370px;
+    /* regular bg
     background: #000000;
+    transparent bg*/
+    background: rgba(0, 0, 0, 0.5);
     color: #ffffff;
     border-radius: 40px;
-    top: 50%;
-    left: 50%;
+    top: calc(50% - 185px);
+    left: calc(50% - 135px);
     position: absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
