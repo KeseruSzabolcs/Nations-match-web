@@ -5,6 +5,8 @@
     <title>Nations Match</title>
     <link rel="stylesheet" type="text/css" href="CSS/homestyle.css">
     <link rel="stylesheet" type="text/css" href="CSS/mainPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+          integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
 </head>
 <body>
 <header>
@@ -78,7 +80,9 @@
                 <td align="center">Romania</td>
                 <td> Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomaniaRomania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania RomaniaRomania Romania Romania</td>
                 <td align="center">Age: 25<br>Email: Kes@yahoo.com</td>
-                <td align="center"><button>Message</button></td>
+                <td align="center">
+                    <a href="#" class="message-user" data-id="${user.id}"><i class="fas fa-paper-plane" style="font-size: 2.0em"></i></a>
+                </td>
             </tr>
             <tr>
                 <td colspan="6"><div class="line"></div></td>
@@ -89,22 +93,29 @@
                 <td align="center">Romania</td>
                 <td> Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomaniaRomania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania RomaniaRomania Romania Romania</td>
                 <td align="center">Age: 25<br>Email: Kes@yahoo.com</td>
-                <td align="center"><button>Message</button></td>
+                <td align="center">
+                    <a href="#" class="message-user" data-id="${user.id}"><i class="fas fa-paper-plane" style="font-size: 2.0em"></i></a>
+                </td>
             </tr>
             <tr>
                 <td colspan="6"><div class="line"></div></td>
             </tr>
             <tr>
-                <td><img src="CSS/img/HomeBg.jpg" alt="" border=3 height=100 width=100></td>
+                <td><img src="" alt="" border=3 height=100 width=100></td>
                 <td align="center">John Lennon</td>
                 <td align="center">Romania</td>
                 <td> Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomaniaRomania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania RomaniaRomania Romania Romania</td>
                 <td align="center">Age: 25<br>Email: Kes@yahoo.com</td>
-                <td align="center"><button>Message</button></td>
+                <td align="center">
+                    <a href="#" class="message-user" data-id="${user.id}"><i class="fas fa-paper-plane" style="font-size: 2.0em"></i></a>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
 </header>
+
+<script src="JS/lib/jquery-3.4.1.min.js"></script>
+<script src="JS/mainPage.js"></script>
 </body>
 </html>
