@@ -39,9 +39,10 @@ body {
 
 .logo{
     animation: spin 60s linear infinite;
-    position: absolute;
+    position: fixed;
     float: left;
     top: 8px;
+    left: 10px;
 }
 
 @keyframes spin {
