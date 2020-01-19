@@ -1,21 +1,14 @@
-.Personal-info{
+.info{
     width: 80%;
     background: #000000;
     background: rgba(0, 0, 0, 0.5);
     color: #ffffff;
     top: 100px;
     left: 10%;
-    position: absolute;
+    position: relative;
+    margin-bottom: 40px;
 }
 
-.user-info{
-    width: 80%;
-    background: #000000;
-    background: rgba(0, 0, 0, 0.5);
-    color: #ffffff;
-    left: 10%;
-    position: absolute;
-}
 table{
     width: 100%;
 }
@@ -59,4 +52,9 @@ table{
 }
 #User tr{
     border-bottom: 1px solid black;
+}
+
+.line{
+    height: 2px;
+    background-color: lightgrey;
 }
