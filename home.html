@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
           integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
 </head>
-<body>
 <header>
     <div class="row">
         <div class="logo">
-            <a href="http://localhost:63342/nations-match-web/home.html"><img src="css/img/loggin_bg.png" width="100" height="100"></a>
+            <a href="http://localhost:63342/nations-match-web/home.html"><img src="css/img/loggin_bg.png"
+                                                                              width="100" height="100"></a>
         </div>
 
         <ul class="main-nav">
@@ -23,7 +23,8 @@
             <li><a href="http://localhost:63342/nations-match-web/login.html">LOGOUT</a> </li>
         </ul>
     </div>
-
+</header>
+<body>
     <div class="info">
         <table id="Personal">
             <thead>
@@ -33,7 +34,7 @@
                 <th><h3>Nationality</h3></th>
                 <th><h3>Description</h3></th>
                 <th><h3>Info</h3></th>
-                <th align="center"><h3>Edit</h3></th>
+                <th align="center"><h3>Actions</h3></th>
             </tr>
             </thead>
             <tbody>
@@ -41,9 +42,18 @@
                 <td><img src="CSS/img/HomeBg.jpg" alt="" border=3 height=100 width=100></td>
                 <td align="center">John Lennon</td>
                 <td align="center">Romania</td>
-                <td>Romania Romania Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania RomaniaRomania Romania RomaniaRomania Romania RomaniaRomania Romania RomaniaRomania Romania Romania</td>
+                <td>Romania Romania Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania
+                    Romania Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania
+                    Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania Romania
+                    Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania Romania Romania
+                    Romania RomaniaRomania Romania RomaniaRomania Romania RomaniaRomania Romania RomaniaRomania
+                    Romania RomaniaRomania Romania RomaniaRomania Romania Romania</td>
                 <td align="center">Age: 25<br>Email: Kes@yahoo.com</td>
-                <td align="center"><button>Edit</button></td>
+                <td align="center"><a href="#" class="delete-item"><center><i class="far fa-trash-alt"
+                                                                              style="font-size: 2.0em"></i></center></a><br>
+                    <a href="#" class="edit-item" data-id="${user.id}"><i class="fas fa-user-edit"
+                                                                          style="font-size: 2.0em"></i></a>
+                    </a></td>
             </tr>
             </tbody>
         </table>
@@ -78,7 +88,10 @@
                 <td><img src="CSS/img/HomeBg.jpg" alt="" border=3 height=100 width=100></td>
                 <td align="center">John Lennon</td>
                 <td align="center">Romania</td>
-                <td> Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomaniaRomania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania RomaniaRomania Romania Romania</td>
+                <td> Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania
+                    Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania R
+                    omania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Romania Ro
+                    maniaRomania Romania RomaniaRomania Romania RomaniaRomania Romania Romania</td>
                 <td align="center">Age: 25<br>Email: Kes@yahoo.com</td>
                 <td align="center">
                     <a href="#" class="message-user" data-id="${user.id}"><i class="fas fa-paper-plane" style="font-size: 2.0em"></i></a>
@@ -91,7 +104,10 @@
                 <td><img src="CSS/img/HomeBg.jpg" alt="" border=3 height=100 width=100></td>
                 <td align="center">John Lennon</td>
                 <td align="center">Romania</td>
-                <td> Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomaniaRomania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania Romania RomaniaRomania Romania Romania</td>
+                <td> Romania Romania Romania Romania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomaniaR
+                    omania Romania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Ro
+                    mania RomaniaRomania Romania RomaniaRomania RomaniaRomania Romania Romania Romania Romania Roman
+                    iaRomania Romania RomaniaRomania Romania RomaniaRomania Romania Romania</td>
                 <td align="center">Age: 25<br>Email: Kes@yahoo.com</td>
                 <td align="center">
                     <a href="#" class="message-user" data-id="${user.id}"><i class="fas fa-paper-plane" style="font-size: 2.0em"></i></a>
@@ -113,8 +129,6 @@
             </tbody>
         </table>
     </div>
-</header>
-
 <script src="JS/lib/jquery-3.4.1.min.js"></script>
 <script src="JS/mainPage.js"></script>
 </body>
