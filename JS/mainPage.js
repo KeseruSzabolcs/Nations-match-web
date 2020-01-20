@@ -18,6 +18,8 @@ window.mainPage = {
     display: function (users) {
         var usersHtml = "";
 
+        users.splice(mainPage.findUser(users, 5),1);
+
         users.forEach(user => usersHtml += mainPage.getUsersHtml(user));
 
         $(".info #User tbody").html(usersHtml);
@@ -53,17 +55,16 @@ window.mainPage = {
 
     displayMainUser: function (user) {
 
-        let usersHtml = mainPage.getMainUserHtml(user[2]);
-
+        let usersHtml = mainPage.getMainUserHtml(user[mainPage.findUser(user, 5)]);
+        console.log(usersHtml);
         $(".info #Personal tbody").html(usersHtml);
     },
 
-    display: function (users) {
-        var usersHtml = "";
-
-        users.forEach(user => usersHtml += mainPage.getUsersHtml(user));
-
-        $(".info #User tbody").html(usersHtml);
+    findUser: function(user, title){
+        const index = user.findIndex(function (user) {
+            return (user.id) === title;
+        });
+        return index;
     },
 
     getMainUserHtml: function (user) {
