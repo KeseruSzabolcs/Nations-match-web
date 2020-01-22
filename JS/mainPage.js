@@ -24,12 +24,12 @@ window.mainPage = {
         var usersHtml = "";
 
 
-        //sessionStorage.getItem("saveId")
-        users.splice(mainPage.findUser(users, Number(mainPage.activeId)),1);
+            //sessionStorage.getItem("saveId")
+            users.splice(mainPage.findUser(users, Number(mainPage.activeId)),1);
 
-        users.forEach(user => usersHtml += mainPage.getUsersHtml(user));
+            users.forEach(user => usersHtml += mainPage.getUsersHtml(user));
 
-        $(".info #User tbody").html(usersHtml);
+            $(".info #User tbody").html(usersHtml);
     },
 
     getUsersHtml: function (user) {
@@ -152,6 +152,12 @@ window.mainPage = {
         });
     }
 };
-mainPage.getMainUser();
-mainPage.getUsers();
-mainPage.bindEvents();
+
+if(mainPage.activeId !== '0'){
+    console.log("sdsa");
+    mainPage.getMainUser();
+    mainPage.getUsers();
+    mainPage.bindEvents();
+}else{
+    window.location = "http://localhost:63342/nations-match-web/login.html"
+}
