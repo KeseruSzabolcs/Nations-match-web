@@ -2,12 +2,17 @@ window.mainPage = {
 
     API_BASE_URL: "http://localhost:8086/nations-match",
 
+    activeId: sessionStorage.getItem("saveId"),
+
     getUsers: function () {
         $.ajax({
             url: mainPage.API_BASE_URL,
             method: "GET"
         }).done(function (response) {
-            console.log(response);
+            //console.log(response);
+            //console.log(mainPage.activeId);
+            //console.log(mainPage.activeId.valueOf())
+
 
             mainPage.display(response.content);
             //mainPage.displayMainUser(response.content)
@@ -18,7 +23,9 @@ window.mainPage = {
     display: function (users) {
         var usersHtml = "";
 
-        users.splice(mainPage.findUser(users, 6),1);
+
+        //sessionStorage.getItem("saveId")
+        users.splice(mainPage.findUser(users, Number(mainPage.activeId)),1);
 
         users.forEach(user => usersHtml += mainPage.getUsersHtml(user));
 
@@ -55,14 +62,16 @@ window.mainPage = {
 
     displayMainUser: function (user) {
 
-        let usersHtml = mainPage.getMainUserHtml(user[mainPage.findUser(user, 6)]);
+
+        //sessionStorage.getItem("saveId")
+        let usersHtml = mainPage.getMainUserHtml(user[mainPage.findUser(user, Number(mainPage.activeId))]);
         console.log(usersHtml);
         $(".info #Personal tbody").html(usersHtml);
     },
 
     findUser: function(user, title){
         const index = user.findIndex(function (user) {
-            return (user.id) === title;
+            return (user.id) === title.valueOf();
         });
         return index;
     },
@@ -73,7 +82,7 @@ window.mainPage = {
                     <td align="center" contenteditable="true"><div id="firstName">${user.firstName}</div><br><div id="lastName">${user.lastName}</div></td>
                     <td align="center" contenteditable="true" id="nationality">${user.nationality}</td>
                     <td contenteditable="true" id="description">${user.description}</td>
-                    <td align="center">Age:<br><div contenteditable="true" id="age">${user.age}</div><br>Email:<br><div contenteditable="true" id="email">${user.email}</div></td>
+                    <td align="center">Age:<br><div contenteditable="true" id="age">${user.age}</div><br>Email:<br><div id="email">${user.email}</div></td>
                     <td align="center"><a href="#" class="delete-item" data-id="${user.id}"><center><i class="far fa-trash-alt" 
                                             style="font-size: 2.0em"></i></center></a><br>
                                        <a href="#" class="edit-item" data-id="${user.id}"><i class="fas fa-user-edit" 
@@ -83,8 +92,6 @@ window.mainPage = {
                 <tr>
                     <td colspan="6"><div class="line"></div></td>
                 </tr>`
-
-
     },
 
     updateContact: function(id, firstName, lastName, age, description, nationality, imageUrl, email){
@@ -130,14 +137,12 @@ window.mainPage = {
                 age: $('#age').val(),
                 description: $('#description').val(),
                 nationality: $('#nationality').val(),
-                imageUrl: $('#imageUrl').val(),
-                email: $('#email').val
             };
 
             let id = $(this).data("id");
 
             mainPage.updateContact(id, personal.firstName, personal.lastName, personal.age,
-                personal.description, personal.nationality, personal.imageUrl, personal.email)
+                personal.description, personal.nationality)
         });
 
         $(".info #Personal").delegate("delete-item", "click", function (event) {

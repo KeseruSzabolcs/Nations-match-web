@@ -59,7 +59,7 @@ h2{
     font-size: 16px;
 }
 
-.loginbox input[type="submit"]
+.loginbox input[type="button"]
 {
     border: none;
     outline: none;
@@ -70,7 +70,7 @@ h2{
     border-radius: 20px;
 }
 
-.loginbox input[type="submit"]:hover
+.loginbox input[type="button"]:hover
 {
     cursor: pointer;
     background: #ffc107;
