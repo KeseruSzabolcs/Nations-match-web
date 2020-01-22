@@ -13,15 +13,18 @@
 <div class="loginbox fadeInLeft animated">
         <i class="fas fa-users" style="font-size: 3.0em"></i>
     <h2>Login</h2>
-    <form action="http://localhost:63342/nations-match-web/home.html">
+    <form>
         <p>Username</p>
-        <input type="text" name="" placeholder="Enter Username">
+        <input type="text" name="" placeholder="Enter Username" id="username">
         <p>Password</p>
-        <input type="password" name="" placeholder="Enter Password">
-        <input type="submit" name="" value="Login">
+        <input type="password" name="" placeholder="Enter Password" id="password">
+        <input type="submit" onclick="loginPage.getUsers()">
+        <button type="button" onclick="loginPage.getUsers()">click me</button>
         <a href="#">Forgot password?</a><br>
         <a href="#">Don't have an account?</a>
     </form>
 </div>
+<script src="JS/lib/jquery-3.4.1.min.js"></script>
+<script src="JS/loginPage.js"></script>
 </body>
 </html>

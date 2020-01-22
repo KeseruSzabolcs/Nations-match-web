@@ -18,7 +18,7 @@ window.mainPage = {
     display: function (users) {
         var usersHtml = "";
 
-        users.splice(mainPage.findUser(users, 5),1);
+        users.splice(mainPage.findUser(users, 6),1);
 
         users.forEach(user => usersHtml += mainPage.getUsersHtml(user));
 
@@ -55,7 +55,7 @@ window.mainPage = {
 
     displayMainUser: function (user) {
 
-        let usersHtml = mainPage.getMainUserHtml(user[mainPage.findUser(user, 5)]);
+        let usersHtml = mainPage.getMainUserHtml(user[mainPage.findUser(user, 6)]);
         console.log(usersHtml);
         $(".info #Personal tbody").html(usersHtml);
     },
@@ -74,7 +74,7 @@ window.mainPage = {
                     <td align="center" contenteditable="true" id="nationality">${user.nationality}</td>
                     <td contenteditable="true" id="description">${user.description}</td>
                     <td align="center">Age:<br><div contenteditable="true" id="age">${user.age}</div><br>Email:<br><div contenteditable="true" id="email">${user.email}</div></td>
-                    <td align="center"><a href="#" class="delete-item"><center><i class="far fa-trash-alt" 
+                    <td align="center"><a href="#" class="delete-item" data-id="${user.id}"><center><i class="far fa-trash-alt" 
                                             style="font-size: 2.0em"></i></center></a><br>
                                        <a href="#" class="edit-item" data-id="${user.id}"><i class="fas fa-user-edit" 
                                             style="font-size: 2.0em"></i></a>
@@ -105,12 +105,23 @@ window.mainPage = {
             data: JSON.stringify(requestBody)
         }).done(function () {
             mainPage.getMainUser();
-            mainPage.getUsers()
+            mainPage.getUsers();
+        })
+    },
+
+    deletePersonalProfile: function(id){
+
+        $.ajax({
+            url: mainPage.API_BASE_URL + "?id=" + id,
+            method: "DELETE",
+        }).done(function(){
+            mainPage.getUsers();
+            mainPage.getMainUser();
         })
     },
 
     bindEvents: function () {
-        $(".info #Personal").delegate("edit-item", "change", function (event) {
+        $(".info #Personal").delegate("edit-item", "click", function (event) {
             event.preventDefault();
 
             const personal = {
@@ -127,6 +138,12 @@ window.mainPage = {
 
             mainPage.updateContact(id, personal.firstName, personal.lastName, personal.age,
                 personal.description, personal.nationality, personal.imageUrl, personal.email)
+        });
+
+        $(".info #Personal").delegate("delete-item", "click", function (event) {
+            event.preventDefault();
+            let id = $(this).data("id");
+            mainPage.deletePersonalProfile(id);
         });
     }
 };
