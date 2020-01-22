@@ -9,13 +9,8 @@ window.mainPage = {
             url: mainPage.API_BASE_URL,
             method: "GET"
         }).done(function (response) {
-            //console.log(response);
-            //console.log(mainPage.activeId);
-            //console.log(mainPage.activeId.valueOf())
-
 
             mainPage.display(response.content);
-            //mainPage.displayMainUser(response.content)
         })
 
     },
@@ -23,8 +18,6 @@ window.mainPage = {
     display: function (users) {
         var usersHtml = "";
 
-
-            //sessionStorage.getItem("saveId")
             users.splice(mainPage.findUser(users, Number(mainPage.activeId)),1);
 
             users.forEach(user => usersHtml += mainPage.getUsersHtml(user));
@@ -62,8 +55,6 @@ window.mainPage = {
 
     displayMainUser: function (user) {
 
-
-        //sessionStorage.getItem("saveId")
         let usersHtml = mainPage.getMainUserHtml(user[mainPage.findUser(user, Number(mainPage.activeId))]);
         console.log(usersHtml);
         $(".info #Personal tbody").html(usersHtml);
@@ -128,7 +119,7 @@ window.mainPage = {
     },
 
     bindEvents: function () {
-        $(".info #Personal").delegate("edit-item", "click", function (event) {
+        $(".info #Personal").delegate(".edit-item", "click", function (event) {
             event.preventDefault();
 
             const personal = {
@@ -141,12 +132,15 @@ window.mainPage = {
 
             let id = $(this).data("id");
 
+            console.log("XX");
+
             mainPage.updateContact(id, personal.firstName, personal.lastName, personal.age,
                 personal.description, personal.nationality)
         });
 
-        $(".info #Personal").delegate("delete-item", "click", function (event) {
+        $(".info #Personal").delegate(".delete-item", "click", function (event) {
             event.preventDefault();
+            console.log("Hi");
             let id = $(this).data("id");
             mainPage.deletePersonalProfile(id);
         });
@@ -154,10 +148,10 @@ window.mainPage = {
 };
 
 if(mainPage.activeId !== '0'){
-    console.log("sdsa");
     mainPage.getMainUser();
     mainPage.getUsers();
     mainPage.bindEvents();
 }else{
     window.location = "http://localhost:63342/nations-match-web/login.html"
 }
+//TODO: CORS-problem
