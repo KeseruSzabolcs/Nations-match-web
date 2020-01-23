@@ -2,7 +2,7 @@ window.loginPage = {
 
     API_BASE_URL: "http://localhost:8086/nations-match",
 
-getUsers: function () {
+    getUsers: function () {
         $.ajax({
             url: loginPage.API_BASE_URL,
             method: "GET"
@@ -25,6 +25,41 @@ getUsers: function () {
             }
         })
     },
+
+    createUser: function () {
+        let imageUrl = $("#imageUrl").val();
+        let firstName = $("#firstName").val();
+        let lastName = $("#lastName").val();
+        let age = $("#age").val();
+        let description = $("#description").val();
+        let nationality = $("#nationality").val();
+        let email = $("#email").val();
+        let password = $("#passwordField").val();
+
+        var requestBody = {
+            imageUrl: imageUrl,
+            firstName: firstName,
+            lastName: lastName,
+            age: age,
+            description: description,
+            nationality: nationality,
+            email: email,
+            password: password
+        };
+
+        console.log("Hello");
+
+        $.ajax({
+            url: loginPage.API_BASE_URL,
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(requestBody)
+        }).done(function () {
+            window.location = "http://localhost:63342/nations-match-web/login.html"
+        })
+    },
+
+
 };
 document.getElementById("create").addEventListener("click", function () {
     document.querySelector(".popup").style.display = "flex";
