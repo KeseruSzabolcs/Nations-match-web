@@ -73,7 +73,7 @@ window.mainPage = {
                     <td align="center" contenteditable="true"><div id="firstName">${user.firstName}</div><br><div id="lastName">${user.lastName}</div></td>
                     <td align="center" contenteditable="true" id="nationality">${user.nationality}</td>
                     <td contenteditable="true" id="description">${user.description}</td>
-                    <td align="center">Age:<br><div contenteditable="true" id="age">${user.age}</div><br>Email:<br><div id="email">${user.email}</div></td>
+                    <td align="center">Age:<br><div contenteditable="true" id="age">${user.age}</div><br>Email:<br><div id="email" contenteditable="true">${user.email}</div></td>
                     <td align="center"><a href="#" class="delete-item" data-id="${user.id}"><center><i class="far fa-trash-alt" 
                                             style="font-size: 2.0em"></i></center></a><br>
                                        <a href="#" class="edit-item" data-id="${user.id}"><i class="fas fa-user-edit" 
@@ -85,14 +85,13 @@ window.mainPage = {
                 </tr>`
     },
 
-    updateContact: function(id, firstName, lastName, age, description, nationality, imageUrl, email){
+    updateContact: function(id, firstName, lastName, age, description, nationality, email){
         let requestBody = {
             firstName: firstName,
             lastName: lastName,
             age: age,
             description: description,
             nationality: nationality,
-            imageUrl:imageUrl,
             email: email
         };
 
@@ -128,6 +127,7 @@ window.mainPage = {
                 age: $('#age').val(),
                 description: $('#description').val(),
                 nationality: $('#nationality').val(),
+                email: $('#email').val()
             };
 
             let id = $(this).data("id");
@@ -135,7 +135,7 @@ window.mainPage = {
             console.log("XX");
 
             mainPage.updateContact(id, personal.firstName, personal.lastName, personal.age,
-                personal.description, personal.nationality)
+                personal.description, personal.nationality, personal.email)
         });
 
         $(".info #Personal").delegate(".delete-item", "click", function (event) {
@@ -147,11 +147,11 @@ window.mainPage = {
     }
 };
 
-if(mainPage.activeId !== '0'){
+if(mainPage.activeId !== '0' && mainPage.activeId !==null){
     mainPage.getMainUser();
     mainPage.getUsers();
     mainPage.bindEvents();
 }else{
     window.location = "http://localhost:63342/nations-match-web/login.html"
 }
-//TODO: CORS-problem
+console.log(mainPage.activeId);
