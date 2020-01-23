@@ -26,4 +26,10 @@ getUsers: function () {
         })
     },
 };
+document.getElementById("create").addEventListener("click", function () {
+    document.querySelector(".popup").style.display = "flex";
+});
+document.querySelector("#close").addEventListener("click", function () {
+    document.querySelector(".popup").style.display = "none";
+});
 loginPage.getUsers();
