@@ -70,13 +70,13 @@ window.mainPage = {
     getMainUserHtml: function (user) {
         return `<tr>
                     <td><img src=${user.imageUrl} alt="" border=3 height=100 width=100></td>
-                    <td align="center" contenteditable="true"><div id="firstName">${user.firstName}</div><br><div id="lastName">${user.lastName}</div></td>
+                    <td align="center"><div id="firstName" contenteditable="true">${user.firstName}</div><br><div id="lastName" contenteditable="true">${user.lastName}</div></td>
                     <td align="center" contenteditable="true" id="nationality">${user.nationality}</td>
                     <td contenteditable="true" id="description">${user.description}</td>
                     <td align="center">Age:<br><div contenteditable="true" id="age">${user.age}</div><br>Email:<br><div id="email" contenteditable="true">${user.email}</div></td>
                     <td align="center"><a href="#" class="delete-item" data-id="${user.id}"><center><i class="far fa-trash-alt" 
                                             style="font-size: 2.0em"></i></center></a><br>
-                                       <a href="#" class="edit-item" data-id="${user.id}"><i class="fas fa-user-edit" 
+                                       <a href="#" class="edit-item" data-id="${user.id}" id="edit"><i class="fas fa-user-edit" 
                                             style="font-size: 2.0em"></i></a>
                     </a></td>
                 </tr>
@@ -117,28 +117,38 @@ window.mainPage = {
         })
     },
 
+
     bindEvents: function () {
-        $(".info #Personal").delegate(".edit-item", "click", function (event) {
+        $("#Personal").delegate(".edit-item", "click", function (event) {
             event.preventDefault();
 
             const personal = {
-                firstName: $('#firstName').val(),
-                lastName: $('#lastName').val(),
-                age: $('#age').val(),
-                description: $('#description').val(),
-                nationality: $('#nationality').val(),
-                email: $('#email').val()
+                firstName: $("#firstName").val(),
+                lastName: $("#lastName").val(),
+                age: $("#age").val(),
+                description: $("#description").val(),
+                nationality: $("#nationality").val(),
+                email: $("#email").val()
             };
 
             let id = $(this).data("id");
 
-            console.log("XX");
+            //console.log("XX");
+
+            console.log(id);
+            console.log($('#age').val());
+            console.log(personal.firstName);
+            console.log(personal.lastName);
+            console.log(personal.age);
+            console.log(personal.description);
+            console.log(personal.email);
+            console.log(personal.nationality);
 
             mainPage.updateContact(id, personal.firstName, personal.lastName, personal.age,
                 personal.description, personal.nationality, personal.email)
         });
 
-        $(".info #Personal").delegate(".delete-item", "click", function (event) {
+        $(".info #Personal tbody").delegate(".delete-item", "click", function (event) {
             event.preventDefault();
             console.log("Hi");
             let id = $(this).data("id");
@@ -154,4 +164,4 @@ if(mainPage.activeId !== '0' && mainPage.activeId !==null){
 }else{
     window.location = "http://localhost:63342/nations-match-web/login.html"
 }
-console.log(mainPage.activeId);
+//console.log(mainPage.activeId);

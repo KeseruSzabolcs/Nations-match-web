@@ -47,15 +47,14 @@ window.loginPage = {
             password: password
         };
 
-        console.log("Hello");
-
         $.ajax({
             url: loginPage.API_BASE_URL,
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify(requestBody)
         }).done(function () {
-            window.location = "http://localhost:63342/nations-match-web/login.html"
+            window.location = "http://localhost:63342/nations-match-web/login.html";
+            alert("You created successfully a user")
         })
     },
 
@@ -68,3 +67,4 @@ document.querySelector("#close").addEventListener("click", function () {
     document.querySelector(".popup").style.display = "none";
 });
 loginPage.getUsers();
+//Todo Resolve Update & Delete methods
