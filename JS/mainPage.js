@@ -25,6 +25,14 @@ window.mainPage = {
             $(".info #User tbody").html(usersHtml);
     },
 
+    displayUserasBySearch: function (users) {
+        var usersHtml = "";
+
+        users.forEach(user => usersHtml += mainPage.getUsersHtml(user));
+
+        $(".info #User tbody").html(usersHtml);
+    },
+
     getUsersHtml: function (user) {
         return `<tr>
                     <td><img src=${user.imageUrl} alt="" border=3 height=100 width=100></td>
@@ -107,75 +115,24 @@ window.mainPage = {
     },
 
     searchUserProfiles: function(minAge, maxAge, firstName, lastName, nationality){
-        if(minAge !=='' && maxAge !=='' && firstName !=='' && lastName !=='' && nationality !==''){
-            $.ajax({
-                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge="
-                    + minAge + "&partialFirstName=" + firstName + "&partialLastName="
-                    + lastName + "&sameNationality=" + nationality,
-                method: "GET"
-            }).done(function (response) {
-
-                console.log(response.content);
-            })
-        }else if(minAge !=='' && maxAge !=='' && firstName !=='' && lastName !==''){
-            $.ajax({
-                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge + "&partialFirstName="
-                    + firstName + "&partialLastName=" + lastName,
-                method: "GET"
-            }).done(function (response) {
-
-                console.log(response.content);
-            })
-        }else if(minAge !=='' && maxAge !=='' && firstName !=='' && nationality !==''){
-            $.ajax({
-                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge + "&partialFirstName="
-                    + firstName + "&sameNationality=" + nationality,
-                method: "GET"
-            }).done(function (response) {
-
-                console.log(response.content);
-            })
-        } else if(minAge !=='' && maxAge !=='' && lastName !=='' && nationality !==''){
-            $.ajax({
-                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge + "&partialLastName="
-                    + lastName + "&sameNationality=" + nationality,
-                method: "GET"
-            }).done(function (response) {
-
-                console.log(response.content);
-            })
-        } else if(minAge !=='' && maxAge !=='' && nationality !==''){
+         if(minAge !=='' && maxAge !=='' && nationality !==''){
             $.ajax({
                 url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge  + "&sameNationality=" + nationality,
                 method: "GET"
             }).done(function (response) {
 
                 console.log(response.content);
-            })
-        } else if(minAge !=='' && maxAge !=='' && firstName !==''){
-            $.ajax({
-                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge  + "&partialFirstName=" + firstName,
-                method: "GET"
-            }).done(function (response) {
+                mainPage.displayUserasBySearch(response.content);
 
-                console.log(response.content);
             })
-        } else if(minAge !=='' && maxAge !=='' && lastName !==''){
-            $.ajax({
-                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge  + "&partialLastName=" + lastName,
-                method: "GET"
-            }).done(function (response) {
-
-                console.log(response.content);
-            })
-        } else if(minAge !=='' && maxAge !==''){
+        } else  if(minAge !=='' && maxAge !==''){
             $.ajax({
                 url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge,
                 method: "GET"
             }).done(function (response) {
 
                 console.log(response.content);
-                mainPage.display(response.content);
+                mainPage.displayUserasBySearch(response.content);
 
             })
         } else if(nationality !=='') {
@@ -185,6 +142,8 @@ window.mainPage = {
             }).done(function (response) {
 
                 console.log(response.content);
+                mainPage.displayUserasBySearch(response.content);
+
             })
         } else if(firstName !=='') {
             $.ajax({
@@ -194,7 +153,7 @@ window.mainPage = {
 
                 console.log("First Name is working");
                 console.log(response.content);
-                mainPage.display(response.content);
+                mainPage.displayUserasBySearch(response.content);
 
             })
         } else if(lastName !=='') {
@@ -205,7 +164,7 @@ window.mainPage = {
 
                 console.log("Last Name is working");
                 console.log(response.content);
-                mainPage.display(response.content);
+                mainPage.displayUserasBySearch(response.content);
 
             })
         }
