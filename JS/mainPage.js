@@ -46,7 +46,6 @@ window.mainPage = {
             url: mainPage.API_BASE_URL,
             method: "GET"
         }).done(function (response) {
-            console.log(response.content);
 
             mainPage.displayMainUser(response.content);
         })
@@ -87,6 +86,7 @@ window.mainPage = {
 
     updateContact: function(id, firstName, lastName, age, description, nationality, email){
         let requestBody = {
+            id: id,
             firstName: firstName,
             lastName: lastName,
             age: age,
@@ -94,8 +94,6 @@ window.mainPage = {
             nationality: nationality,
             email: email
         };
-
-        console.log(lastName);
 
         $.ajax({
             url: mainPage.API_BASE_URL + "/" + id,
@@ -108,6 +106,111 @@ window.mainPage = {
         })
     },
 
+    searchUserProfiles: function(minAge, maxAge, firstName, lastName, nationality){
+        if(minAge !=='' && maxAge !=='' && firstName !=='' && lastName !=='' && nationality !==''){
+            $.ajax({
+                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge="
+                    + minAge + "&partialFirstName=" + firstName + "&partialLastName="
+                    + lastName + "&sameNationality=" + nationality,
+                method: "GET"
+            }).done(function (response) {
+
+                console.log(response.content);
+            })
+        }else if(minAge !=='' && maxAge !=='' && firstName !=='' && lastName !==''){
+            $.ajax({
+                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge + "&partialFirstName="
+                    + firstName + "&partialLastName=" + lastName,
+                method: "GET"
+            }).done(function (response) {
+
+                console.log(response.content);
+            })
+        }else if(minAge !=='' && maxAge !=='' && firstName !=='' && nationality !==''){
+            $.ajax({
+                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge + "&partialFirstName="
+                    + firstName + "&sameNationality=" + nationality,
+                method: "GET"
+            }).done(function (response) {
+
+                console.log(response.content);
+            })
+        } else if(minAge !=='' && maxAge !=='' && lastName !=='' && nationality !==''){
+            $.ajax({
+                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge + "&partialLastName="
+                    + lastName + "&sameNationality=" + nationality,
+                method: "GET"
+            }).done(function (response) {
+
+                console.log(response.content);
+            })
+        } else if(minAge !=='' && maxAge !=='' && nationality !==''){
+            $.ajax({
+                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge  + "&sameNationality=" + nationality,
+                method: "GET"
+            }).done(function (response) {
+
+                console.log(response.content);
+            })
+        } else if(minAge !=='' && maxAge !=='' && firstName !==''){
+            $.ajax({
+                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge  + "&partialFirstName=" + firstName,
+                method: "GET"
+            }).done(function (response) {
+
+                console.log(response.content);
+            })
+        } else if(minAge !=='' && maxAge !=='' && lastName !==''){
+            $.ajax({
+                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge  + "&partialLastName=" + lastName,
+                method: "GET"
+            }).done(function (response) {
+
+                console.log(response.content);
+            })
+        } else if(minAge !=='' && maxAge !==''){
+            $.ajax({
+                url: mainPage.API_BASE_URL + "?maxAge=" + maxAge + "&minAge=" + minAge,
+                method: "GET"
+            }).done(function (response) {
+
+                console.log(response.content);
+                mainPage.display(response.content);
+
+            })
+        } else if(nationality !=='') {
+            $.ajax({
+                url: mainPage.API_BASE_URL + "?sameNationality=" + nationality,
+                method: "GET"
+            }).done(function (response) {
+
+                console.log(response.content);
+            })
+        } else if(firstName !=='') {
+            $.ajax({
+                url: mainPage.API_BASE_URL + "?partialFirstName=" + firstName,
+                method: "GET"
+            }).done(function (response) {
+
+                console.log("First Name is working");
+                console.log(response.content);
+                mainPage.display(response.content);
+
+            })
+        } else if(lastName !=='') {
+            $.ajax({
+                url: mainPage.API_BASE_URL + "?partialLastName=" + lastName,
+                method: "GET"
+            }).done(function (response) {
+
+                console.log("Last Name is working");
+                console.log(response.content);
+                mainPage.display(response.content);
+
+            })
+        }
+    },
+
     deletePersonalProfile: function(id){
 
         $.ajax({
@@ -118,7 +221,6 @@ window.mainPage = {
             window.location = "http://localhost:63342/nations-match-web/login.html"
         })
     },
-
 
     bindEvents: function () {
         $(".info").delegate(".edit-item", "click", function (event) {
@@ -143,20 +245,31 @@ window.mainPage = {
             };
 
             let id = $(this).data("id");
-
-            //console.log("XX");
-
-
-            // console.log(id);
-             console.log(personal.firstName);
-            // console.log(personal.lastName);
-            // console.log(personal.age);
-            // console.log(personal.description);
-            // console.log(personal.email);
-            // console.log(personal.nationality);
+            console.log(personal.nationality);
 
             mainPage.updateContact(id, personal.firstName, personal.lastName, personal.age,
                 personal.description, personal.nationality, personal.email)
+        });
+
+        $("#search-form").submit(function (event) {
+            event.preventDefault();
+
+            const person = {
+                firstName: $('#firstNameField').val(),
+                lastName: $('#lastNameField').val(),
+                minAge: $('#minAgeField').val(),
+                maxAge: $('#maxAgeField').val(),
+                nationality: $('#nationalityField').val(),
+            };
+
+            console.log(person.minAge);
+            console.log(person.maxAge);
+            console.log(person.firstName);
+            console.log(person.lastName);
+            console.log(person.nationality);
+
+            mainPage.searchUserProfiles(person.minAge, person.maxAge, person.firstName,
+                person.lastName, person.nationality)
         });
 
         $(".info #Personal tbody").delegate(".delete-item", "click", function (event) {
@@ -165,6 +278,8 @@ window.mainPage = {
             let id = $(this).data("id");
             mainPage.deletePersonalProfile(id);
         });
+
+
     }
 };
 
