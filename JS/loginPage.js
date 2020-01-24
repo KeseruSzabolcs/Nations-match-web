@@ -67,4 +67,3 @@ document.querySelector("#close").addEventListener("click", function () {
     document.querySelector(".popup").style.display = "none";
 });
 loginPage.getUsers();
-//Todo Resolve Update & Delete methods

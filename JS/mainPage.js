@@ -95,8 +95,10 @@ window.mainPage = {
             email: email
         };
 
+        console.log(lastName);
+
         $.ajax({
-            url: mainPage.API_BASE_URL + "?id=" + id,
+            url: mainPage.API_BASE_URL + "/" + id,
             method: "PUT",
             contentType: "application/json",
             data: JSON.stringify(requestBody)
@@ -109,40 +111,49 @@ window.mainPage = {
     deletePersonalProfile: function(id){
 
         $.ajax({
-            url: mainPage.API_BASE_URL + "?id=" + id,
+            url: mainPage.API_BASE_URL + "/" + id,
             method: "DELETE",
         }).done(function(){
-            mainPage.getUsers();
-            mainPage.getMainUser();
+            alert("You deleted your account")
+            window.location = "http://localhost:63342/nations-match-web/login.html"
         })
     },
 
 
     bindEvents: function () {
-        $("#Personal").delegate(".edit-item", "click", function (event) {
+        $(".info").delegate(".edit-item", "click", function (event) {
             event.preventDefault();
 
+            // const personal = {
+            //     firstName: document.getElementById("firstName").textContent,
+            //     lastName: document.getElementById("lastName").textContent,
+            //     age: document.getElementById("age").textContent,
+            //     description: document.getElementById("description").textContent,
+            //     nationality: document.getElementById("nationality").textContent,
+            //     email: document.getElementById("email").textContent
+            // };
+
             const personal = {
-                firstName: $("#firstName").val(),
-                lastName: $("#lastName").val(),
-                age: $("#age").val(),
-                description: $("#description").val(),
-                nationality: $("#nationality").val(),
-                email: $("#email").val()
+                firstName: $("#firstName").text(),
+                lastName: $("#lastName").text(),
+                age: $("#age").text(),
+                description: $("#description").text(),
+                nationality: $("#nationality").text(),
+                email: $("#email").text()
             };
 
             let id = $(this).data("id");
 
             //console.log("XX");
 
-            console.log(id);
-            console.log($('#age').val());
-            console.log(personal.firstName);
-            console.log(personal.lastName);
-            console.log(personal.age);
-            console.log(personal.description);
-            console.log(personal.email);
-            console.log(personal.nationality);
+
+            // console.log(id);
+             console.log(personal.firstName);
+            // console.log(personal.lastName);
+            // console.log(personal.age);
+            // console.log(personal.description);
+            // console.log(personal.email);
+            // console.log(personal.nationality);
 
             mainPage.updateContact(id, personal.firstName, personal.lastName, personal.age,
                 personal.description, personal.nationality, personal.email)
