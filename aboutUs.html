@@ -14,10 +14,8 @@
         </div>
         <ul class="main-nav">
             <li><a href="http://localhost:63342/nations-match-web/home.html">HOME</a> </li>
-            <li><a href="http://localhost:63342/nations-match-web/messages.html">MESSAGES</a> </li>
             <li class="active"><a href="http://localhost:63342/nations-match-web/aboutUs.html">ABOUT US</a> </li>
-            <li><a href="http://localhost:63342/nations-match-web/settings.html">SETTINGS</a> </li>
-            <li><a href="http://localhost:63342/nations-match-web/login.html">LOGOUT</a> </li>
+            <li><a onclick="logout.setIdToZero()">LOGOUT</a> </li>
         </ul>
     </div>
 </header>
@@ -30,10 +28,43 @@
         <h1><i>Our Team</i></h1>
         <span class="border"></span>
         <div class="ps bounceIn animated">
-            <img src="css/img/R.jpg">
-            <img src="css/img/S.jpg">
-            <img src="css/img/M.jpg">
+            <a href="#R"><img src="css/img/R.jpg"></a>
+            <a href="#S"><img src="css/img/S.jpg"></a>
+            <a href="#M"><img src="css/img/M.jpg"></a>
+        </div>
+        <div class="selection" id="R">
+            <span class="name">Blenyesi Roland</span>
+            <span class="border"></span>
+            <p>
+                Backend developer:<br>
+                Java<br>
+                Spring Boot<br>
+                MySQL<br>
+            </p>
+        </div>
+        <div class="selection" id="S">
+            <span class="name">Keserű Szabolcs Balázs</span>
+            <span class="border"></span>
+            <p>
+                Frontend developer:<br>
+                HTML<br>
+                CSS<br>
+                JavaScript<br>
+            </p>
+        </div>
+        <div class="selection" id="M">
+            <span class="name">Popescu Mihai</span>
+            <span class="border"></span>
+            <p>
+                Backend developer:<br>
+                Java<br>
+                Spring Boot<br>
+                MySQL<br>
+            </p>
         </div>
     </div>
+    <script src="JS/lib/jquery-3.4.1.min.js"></script>
+    <script src="JS/isUserLogedOut.js"></script>
+    <script src="JS/logout.js"></script>
 </body>
 </html>

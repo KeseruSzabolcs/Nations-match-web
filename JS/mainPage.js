@@ -41,7 +41,7 @@ window.mainPage = {
                     <td>${user.description}</td>
                     <td align="center">Age:<br>${user.age}<br>Email:<br>${user.email}</td>
                     <td align="center">
-                         <a href="#" class="message-user" data-id="${user.id}"><i class="fas fa-paper-plane" style="font-size: 2.0em"></i></a>
+                         <a href="http://localhost:63342/nations-match-web/messages.html" class="message-user" data-id="${user.id}"><i class="fas fa-paper-plane" style="font-size: 2.0em"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -63,7 +63,6 @@ window.mainPage = {
     displayMainUser: function (user) {
 
         let usersHtml = mainPage.getMainUserHtml(user[mainPage.findUser(user, Number(mainPage.activeId))]);
-        console.log(usersHtml);
         $(".info #Personal tbody").html(usersHtml);
     },
 
@@ -167,7 +166,9 @@ window.mainPage = {
                 mainPage.displayUserasBySearch(response.content);
 
             })
-        }
+        } else {
+             window.location = "http://localhost:63342/nations-match-web/home.html";
+         }
     },
 
     deletePersonalProfile: function(id){
@@ -185,15 +186,6 @@ window.mainPage = {
         $(".info").delegate(".edit-item", "click", function (event) {
             event.preventDefault();
 
-            // const personal = {
-            //     firstName: document.getElementById("firstName").textContent,
-            //     lastName: document.getElementById("lastName").textContent,
-            //     age: document.getElementById("age").textContent,
-            //     description: document.getElementById("description").textContent,
-            //     nationality: document.getElementById("nationality").textContent,
-            //     email: document.getElementById("email").textContent
-            // };
-
             const personal = {
                 firstName: $("#firstName").text(),
                 lastName: $("#lastName").text(),
@@ -204,7 +196,6 @@ window.mainPage = {
             };
 
             let id = $(this).data("id");
-            console.log(personal.nationality);
 
             mainPage.updateContact(id, personal.firstName, personal.lastName, personal.age,
                 personal.description, personal.nationality, personal.email)
@@ -221,19 +212,12 @@ window.mainPage = {
                 nationality: $('#nationalityField').val(),
             };
 
-            console.log(person.minAge);
-            console.log(person.maxAge);
-            console.log(person.firstName);
-            console.log(person.lastName);
-            console.log(person.nationality);
-
             mainPage.searchUserProfiles(person.minAge, person.maxAge, person.firstName,
                 person.lastName, person.nationality)
         });
 
         $(".info #Personal tbody").delegate(".delete-item", "click", function (event) {
             event.preventDefault();
-            console.log("Hi");
             let id = $(this).data("id");
             mainPage.deletePersonalProfile(id);
         });
@@ -249,4 +233,3 @@ if(mainPage.activeId !== '0' && mainPage.activeId !==null){
 }else{
     window.location = "http://localhost:63342/nations-match-web/login.html"
 }
-//console.log(mainPage.activeId);
