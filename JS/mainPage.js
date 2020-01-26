@@ -12,7 +12,6 @@ window.mainPage = {
 
             mainPage.display(response.content);
         })
-
     },
 
     display: function (users) {

@@ -16,7 +16,9 @@ window.loginPage = {
                 if (username == response.content[i].email && password == response.content[i].password) {
                     //console.log(response.content[i].id)
                     saveId = response.content[i].id;
+                    saveUrl = response.content[i].imageUrl;
                     sessionStorage.setItem("saveId", saveId);
+                    sessionStorage.setItem("saveUrl", saveUrl);
                     firstReload = true;
                     //console.log(saveId);
                     window.location = "http://localhost:63342/nations-match-web/home.html";
