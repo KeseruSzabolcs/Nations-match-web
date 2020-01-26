@@ -1,6 +1,6 @@
 window.messenger = {
 
-    API_BASE_URL: "http://localhost:8086/nations-match/test",
+    API_BASE_URL: "http://localhost:8086/chat-content",
 
     activeId: sessionStorage.getItem("saveId"),
     activeUrl: sessionStorage.getItem("saveUrl"),
@@ -10,7 +10,6 @@ window.messenger = {
             url: messenger.API_BASE_URL,
             method: "GET"
         }).done(function (response) {
-
             messenger.display(response.content);
         })
     },
@@ -25,7 +24,6 @@ window.messenger = {
                 HtmlBody[i] = messenger.getFriendTextHtml(users[i]);
             }
         }
-        console.log(HtmlBody);
         $(".chatbox .chatlogs").html(HtmlBody);
     },
 
@@ -44,11 +42,8 @@ window.messenger = {
     },
 
     createText: function () {
-        //let text = document.getElementById("textUser").textContent;
         let text = $("#textUser").val();
 
-        console.log(messenger.activeId);
-        console.log(text);
         var requestBody = {
             userId: messenger.activeId,
             imageUrl: messenger.activeUrl,
@@ -61,8 +56,10 @@ window.messenger = {
             contentType: "application/json",
             data: JSON.stringify(requestBody)
         }).done(function () {
-            window.location = "http://localhost:63342/nations-match-web/messages.html";
+            //window.location = "http://localhost:63342/nations-match-web/messages.html";
             messenger.getText();
+            $(".chatlogs").scrollTop($(".chatlogs")[0].scrollHeight);
+
         })
     }
 };
